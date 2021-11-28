@@ -1,15 +1,16 @@
-
-/**
- * Write a description of class Hra here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Hra {
-    /**
-     * Constructor for objects of class Hra
-     */
+
+    private Hrac hrac;
+    //constructor
     public Hra() {
-        // initialise instance variables
+
+        this.hrac = new Hrac();
+        this.hrac = new Hrac();
+
     }
+
+
+
+    //TODO: dorob osetrovanie poctu bodov a vyhodnocovanie vitaza
+
 }
