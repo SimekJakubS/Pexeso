@@ -6,7 +6,7 @@ public class HernaKarta {
     private boolean jeOdokryta = true;
 
 
-    public HernaKarta(int surX, int surY, int farba) {
+    public HernaKarta(int surX, int surY, int farebnaKombinacia) {
 
         this.zakryta = new Stvorec();
         this.zakryta.posunVodorovne(surX);
@@ -20,7 +20,7 @@ public class HernaKarta {
         this.kruh.posunVodorovne(surX);
         this.kruh.posunZvisle(surY);
 
-        this.vyberFarbu(farba);
+        this.vyberFarbu(farebnaKombinacia);
         this.zakryta.zobraz();
 
     }
