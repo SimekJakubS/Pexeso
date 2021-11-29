@@ -3,10 +3,10 @@ public class HernaKarta {
     private Stvorec zakryta;
     private Stvorec odokryta;
     private Kruh kruh;
-    private boolean jeOdokryta;
+    private boolean jeOdokryta = true;
 
 
-    public HernaKarta(int surX, int surY, int farba, int cislo) {
+    public HernaKarta(int surX, int surY, int farba) {
 
         this.zakryta = new Stvorec();
         this.zakryta.posunVodorovne(surX);
@@ -16,27 +16,62 @@ public class HernaKarta {
         this.odokryta.posunVodorovne(surX);
         this.odokryta.posunZvisle(surY);
 
-        this.vyberFarbu(farba);
-        this.zakryta.zobraz();
-
         this.kruh = new Kruh();
         this.kruh.posunVodorovne(surX);
         this.kruh.posunZvisle(surY);
-        this.kruh.zobraz();
 
+        this.vyberFarbu(farba);
+        this.zakryta.zobraz();
 
     }
 
-    private void vyberFarbu(int farba) {
-        if (farba == 1) {
-            this.zakryta.zmenFarbu("yellow");
-            this.odokryta.zmenFarbu("blue");
-        } else if (farba == 2) {
-            this.zakryta.zmenFarbu("blue");
-            this.odokryta.zmenFarbu("blue");
-        } else if (farba == 3) {
-            this.zakryta.zmenFarbu("green");
-            this.odokryta.zmenFarbu("green");
+    private void vyberFarbu(int farebnaKombinacia) {
+        switch (farebnaKombinacia) {
+            case 1: {
+                this.zakryta.zmenFarbu("red");
+                this.odokryta.zmenFarbu("yellow");
+                this.kruh.zmenFarbu("blue");
+            }
+            case 2: {
+                this.zakryta.zmenFarbu("red");
+                this.odokryta.zmenFarbu("blue");
+                this.kruh.zmenFarbu("yellow");
+            }
+            case 3: {
+                this.zakryta.zmenFarbu("red");
+                this.odokryta.zmenFarbu("green");
+                this.kruh.zmenFarbu("yellow");
+            }
+            case 4: {
+                this.zakryta.zmenFarbu("red");
+                this.odokryta.zmenFarbu("yellow");
+                this.kruh.zmenFarbu("green");
+            }
+            case 5: {
+                this.zakryta.zmenFarbu("red");
+                this.odokryta.zmenFarbu("blue");
+                this.kruh.zmenFarbu("green");
+            }
+            case 6: {
+                this.zakryta.zmenFarbu("red");
+                this.odokryta.zmenFarbu("green");
+                this.kruh.zmenFarbu("blue");
+            }
+            case 7: {
+                this.zakryta.zmenFarbu("red");
+                this.odokryta.zmenFarbu("yellow");
+                this.kruh.zmenFarbu("red");
+            }
+            case 8: {
+                this.zakryta.zmenFarbu("red");
+                this.odokryta.zmenFarbu("blue");
+                this.kruh.zmenFarbu("red");
+            }
+            case 9: {
+                this.zakryta.zmenFarbu("red");
+                this.odokryta.zmenFarbu("green");
+                this.kruh.zmenFarbu("red");
+            }
         }
     }
 
@@ -44,16 +79,16 @@ public class HernaKarta {
         if (this.jeOdokryta) {
             this.zakryta.skry();
             this.odokryta.zobraz();
-        } else if (!this.jeOdokryta) {
+            this.kruh.zobraz();
+        } else if (this.jeOdokryta == false) {
             this.odokryta.skry();
+            this.kruh.skry();
             this.zakryta.zobraz();
+
         }
 
-        if (jeOdokryta) {
-            jeOdokryta = false;
-        } else {
-            jeOdokryta = true;
-        }
+        if (!jeOdokryta) jeOdokryta = true;
+        else jeOdokryta = false;
     }
 
 }
