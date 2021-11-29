@@ -11,7 +11,9 @@ public class HernaPlocha {
         this.platno = Platno.dajPlatno();
         this.platno.setVisible(true);
 
-        this.karta = new HernaKarta(0,0, 1, 1);
+        this.karta = new HernaKarta(0, 0, 1, 1);
+        this.karta = new HernaKarta(200,200, 1,1);
+        /*
         this.karta = new HernaKarta(200,0, 2,1);
         this.karta = new HernaKarta(400,0, 1, 1);
         this.karta = new HernaKarta(600,0, 3,1);
@@ -31,7 +33,7 @@ public class HernaPlocha {
         this.karta = new HernaKarta(600,400, 1, 1);
         this.karta = new HernaKarta(800,400, 3,1);
         this.karta = new HernaKarta(1000,400, 1, 1);
-
+*/
 
 
 

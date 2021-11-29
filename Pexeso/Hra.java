@@ -25,6 +25,7 @@ public class Hra {
     private int vyberVelkostHry(int velkostHry) {
         if (velkostHry == 1) { //velkostiHry = 4x3, 6x3 [12,18] /2 pretoze 2 karty
             this.maxPocetBodov = 6;
+
         } else if (velkostHry == 2) {
             this.maxPocetBodov = 9;
         } else {
