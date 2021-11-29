@@ -23,14 +23,12 @@ public class Hra {
     }
 
     private int vyberVelkostHry(int velkostHry) {
-        if (velkostHry == 1) { //velkostiHry = 4x3, 2x8, 5x6 [12,16,30] /2 pretoze 2 karty
+        if (velkostHry == 1) { //velkostiHry = 4x3, 6x3 [12,18] /2 pretoze 2 karty
             this.maxPocetBodov = 6;
         } else if (velkostHry == 2) {
-            this.maxPocetBodov = 8;
-        } else if (velkostHry == 3) {
-            this.maxPocetBodov = 15;
+            this.maxPocetBodov = 9;
         } else {
-            this.maxPocetBodov = 8;
+            this.maxPocetBodov = 9;
         }
         return this.maxPocetBodov;
     }
