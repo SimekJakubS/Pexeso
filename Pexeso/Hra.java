@@ -6,6 +6,8 @@ public class Hra {
     private Hrac hrac2;
     private boolean hraSkoncila;
     private int maxPocetBodov;
+    private HernaPlocha hernaPlocha;
+    private Platno platno;
 
     //constructor
     public Hra(String menoHraca1, String menoHraca2, int velkostHry) {
@@ -19,6 +21,15 @@ public class Hra {
 
         hraci.add(this.hrac1);
         hraci.add(this.hrac2);
+
+        this.platno = Platno.dajPlatno();
+        this.platno.setVisible(true);
+
+        this.hernaPlocha = new HernaPlocha(menoHraca1, menoHraca2, velkostHry);
+
+
+
+
 
     }
 

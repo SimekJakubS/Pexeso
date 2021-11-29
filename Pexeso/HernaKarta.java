@@ -6,7 +6,7 @@ public class HernaKarta {
     private boolean jeOdokryta = true;
 
 
-    public HernaKarta(int surX, int surY, int farebnaKombinacia) {
+    public HernaKarta(int surX, int surY, int farba) {
 
         this.zakryta = new Stvorec();
         this.zakryta.posunVodorovne(surX);
@@ -20,7 +20,7 @@ public class HernaKarta {
         this.kruh.posunVodorovne(surX);
         this.kruh.posunZvisle(surY);
 
-        this.vyberFarbu(farebnaKombinacia);
+        this.vyberFarbu(farba);
         this.zakryta.zobraz();
 
     }
@@ -31,46 +31,55 @@ public class HernaKarta {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("yellow");
                 this.kruh.zmenFarbu("blue");
+                break;
             }
             case 2: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("blue");
                 this.kruh.zmenFarbu("yellow");
+                break;
             }
             case 3: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("green");
                 this.kruh.zmenFarbu("yellow");
+                break;
             }
             case 4: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("yellow");
                 this.kruh.zmenFarbu("green");
+                break;
             }
             case 5: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("blue");
                 this.kruh.zmenFarbu("green");
+                break;
             }
             case 6: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("green");
                 this.kruh.zmenFarbu("blue");
+                break;
             }
             case 7: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("yellow");
                 this.kruh.zmenFarbu("red");
+                break;
             }
             case 8: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("blue");
                 this.kruh.zmenFarbu("red");
+                break;
             }
             case 9: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("green");
                 this.kruh.zmenFarbu("red");
+                break;
             }
         }
     }
@@ -80,7 +89,7 @@ public class HernaKarta {
             this.zakryta.skry();
             this.odokryta.zobraz();
             this.kruh.zobraz();
-        } else if (this.jeOdokryta == false) {
+        } else if (!this.jeOdokryta) {
             this.odokryta.skry();
             this.kruh.skry();
             this.zakryta.zobraz();

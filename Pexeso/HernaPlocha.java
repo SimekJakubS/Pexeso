@@ -1,4 +1,3 @@
-
 public class HernaPlocha {
 
     private Platno platno;
