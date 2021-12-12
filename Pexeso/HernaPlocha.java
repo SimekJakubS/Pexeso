@@ -60,11 +60,11 @@ public class HernaPlocha {
             Collections.shuffle(this.nahodneFarebneKombinacie);
             int k = 0;
 
-            for (int i = 0; i <= 5; i ++) {
-                for (int j = 0; j <= 2; j ++) {
-
+            for (int j = 0; j <= 2; j ++) {
+                for (int i = 0; i <= 5; i ++) {
                     try {
                         this.karta = new HernaKarta(i, j, nahodneFarebneKombinacie.get(k));
+                        System.out.wait(15000);
                     } catch (Exception e){}
 
                     this.karty.add(this.karta);
@@ -114,7 +114,24 @@ public class HernaPlocha {
             System.out.println("///////////////");
 
 
+            if(vyberKartuY == 0) {
+                karty.get(vyberKartuX).otoc();
+            } else if(vyberKartuY == 1) {
+                karty.get(vyberKartuX+6).otoc();
+            } else if(vyberKartuY == 2) {
+                karty.get(vyberKartuX+12).otoc();
+            }
+
+
+
+
+
+
+
         }
+
+
+
 
 
         //if (kliknutyY >= 50 && suradnicaY % 3 >= 1) {
