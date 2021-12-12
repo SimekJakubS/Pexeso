@@ -78,11 +78,6 @@ public class HernaPlocha {
     public void vyberSuradnice(int kliknutyX, int kliknutyY) { //TODO: DOROB KLIK
         int vyberKartuX = 0;
         int vyberKartuY = 0;
-
-
-
-
-
         if(kliknutyY >= 50 && kliknutyX >= 50) {
             //VYBER SURADNICU PRE X
             int suradnicaX = (((kliknutyX - 50) / 100));
