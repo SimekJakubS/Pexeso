@@ -69,22 +69,58 @@ public class HernaPlocha {
 
                     this.karty.add(this.karta);
                     k++;
+
                 }
             }
         }
     }
 
     public void vyberSuradnice(int kliknutyX, int kliknutyY) { //TODO: DOROB KLIK
-        //int polohaKurzoraX = (kliknutyX);
-        //int polohaKurzoraY = (kliknutyY);
+        int vyberKartuX = 0;
+        int vyberKartuY = 0;
 
-        System.out.println(kliknutyX + "+" + kliknutyY);
 
-        switch (kliknutyX) {
-            case 0:
-                break;
+
+
+
+        if(kliknutyY >= 50 && kliknutyX >= 50) {
+            //VYBER SURADNICU PRE X
+            int suradnicaX = (((kliknutyX - 50) / 100));
+
+            if (suradnicaX % 2 == 0) {
+                vyberKartuX = suradnicaX / 2;
+            }
+
+            //VYBER SURADNICU PRE Y
+            int suradnicaY = ((((kliknutyY) - 50)/ 50));  // /2 ONLY IF 0 || parna
+
+            switch (suradnicaY) {
+                case 0:
+                case 1:
+                    vyberKartuY = 0;
+                    break;
+                case 3:
+                case 4:
+                    vyberKartuY = 1;
+                    break;
+                case 6:
+                case 7:
+                    vyberKartuY = 2;
+                    break;
+            }
+
+            System.out.println("X: " + vyberKartuX);
+            System.out.println("Y: " + vyberKartuY);
+            System.out.println("///////////////");
+
 
         }
+
+
+        //if (kliknutyY >= 50 && suradnicaY % 3 >= 1) {
+
+
+        //suradnica % 3 = 1 or 2
 
     }
 
