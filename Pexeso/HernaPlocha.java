@@ -7,8 +7,8 @@ public class HernaPlocha {
     private Hra hra;
     private HernaKarta karta;
     private final Manazer manazer = new Manazer();
-    ArrayList<HernaKarta> karty = new ArrayList<HernaKarta>();
-    ArrayList<Integer> nahodneFarebneKombinacie = new ArrayList<>();
+    private ArrayList<HernaKarta> karty = new ArrayList<HernaKarta>();
+    private ArrayList<Integer> nahodneFarebneKombinacie = new ArrayList<>();
 
     public HernaPlocha(String menoHraca1, String menoHraca2, int velkostHry) {
 
@@ -17,11 +17,10 @@ public class HernaPlocha {
         this.manazer.spravujObjekt(this);
 
         this.vytvorKarty(velkostHry);
-        System.out.println(this.karty);
     }
 
     private void vytvorKarty(int velkostHry) {
-        if(velkostHry == 1) {
+        if (velkostHry == 1) {
 
             for (int i = 1; i <= 6; i++) {
                 this.nahodneFarebneKombinacie.add(i);
@@ -35,14 +34,13 @@ public class HernaPlocha {
                 for (int j = 0; j <= 2; j++) {
 
                     try {
-                        this.karta = new HernaKarta(i, j, nahodneFarebneKombinacie.get(k));
-                    } catch (Exception e){}
+                        this.karta = new HernaKarta(i, j, this.nahodneFarebneKombinacie.get(k));
+                    } catch (Exception e) { }
 
                     this.karty.add(this.karta);
                     k++;
                 }
             }
-
 
         } else {
 
@@ -54,11 +52,11 @@ public class HernaPlocha {
             Collections.shuffle(this.nahodneFarebneKombinacie);
             int k = 0;
 
-            for (int j = 0; j <= 2; j ++) {
-                for (int i = 0; i <= 5; i ++) {
+            for (int j = 0; j <= 2; j++) {
+                for (int i = 0; i <= 5; i++) {
                     try {
-                        this.karta = new HernaKarta(i, j, nahodneFarebneKombinacie.get(k));
-                    } catch (Exception e){}
+                        this.karta = new HernaKarta(i, j, this.nahodneFarebneKombinacie.get(k));
+                    } catch (Exception e) { }
 
                     this.karty.add(this.karta);
                     k++;
@@ -71,7 +69,7 @@ public class HernaPlocha {
     public void vyberSuradnice(int kliknutyX, int kliknutyY) {
         int vyberKartuX = 0;
         int vyberKartuY = 0;
-        if(kliknutyY >= 50 && kliknutyX >= 50) {
+        if (kliknutyY >= 50 && kliknutyX >= 50) {
             //VYBER SURADNICU PRE X
             int suradnicaX = (((kliknutyX - 50) / 100));
 
@@ -80,7 +78,7 @@ public class HernaPlocha {
             }
 
             //VYBER SURADNICU PRE Y
-            int suradnicaY = ((((kliknutyY) - 50)/ 50));  // /2 ONLY IF 0 || parna
+            int suradnicaY = ((((kliknutyY) - 50) / 50));  // /2 ONLY IF 0 || parna
 
             switch (suradnicaY) {
                 case 0:
@@ -97,12 +95,12 @@ public class HernaPlocha {
                     break;
             }
 
-            if(vyberKartuY == 0) {
-                karty.get(vyberKartuX).otoc();
-            } else if(vyberKartuY == 1) {
-                karty.get(vyberKartuX+6).otoc();
-            } else if(vyberKartuY == 2) {
-                karty.get(vyberKartuX+12).otoc();
+            if (vyberKartuY == 0) {
+                this.karty.get(vyberKartuX).otoc();
+            } else if (vyberKartuY == 1) {
+                this.karty.get(vyberKartuX + 6).otoc();
+            } else if (vyberKartuY == 2) {
+                this.karty.get(vyberKartuX + 12).otoc();
             }
         }
     }

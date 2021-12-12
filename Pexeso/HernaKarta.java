@@ -15,16 +15,16 @@ public class HernaKarta {
         this.vypocitajPosun(surX, surY);
 
         this.zakryta = new Stvorec();
-        this.zakryta.posunVodorovne(posunX);
-        this.zakryta.posunZvisle(posunY);
+        this.zakryta.posunVodorovne(this.posunX);
+        this.zakryta.posunZvisle(this.posunY);
 
         this.odokryta = new Stvorec();
-        this.odokryta.posunVodorovne(posunX);
-        this.odokryta.posunZvisle(posunY);
+        this.odokryta.posunVodorovne(this.posunX);
+        this.odokryta.posunZvisle(this.posunY);
 
         this.kruh = new Kruh();
-        this.kruh.posunVodorovne(posunX);
-        this.kruh.posunZvisle(posunY);
+        this.kruh.posunVodorovne(this.posunX);
+        this.kruh.posunZvisle(this.posunY);
 
         this.vyberFarbu(farba);
         this.zakryta.zobraz();
@@ -42,8 +42,11 @@ public class HernaKarta {
 
         }
 
-        if (!jeOdokryta) jeOdokryta = true;
-        else jeOdokryta = false;
+        if (!this.jeOdokryta) {
+            this.jeOdokryta = true;
+        } else {
+            this.jeOdokryta = false;
+        }
     }
 
     private void vypocitajPosun (int surX, int surY) {
