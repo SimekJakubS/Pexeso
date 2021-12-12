@@ -17,12 +17,6 @@ public class HernaPlocha {
         this.manazer.spravujObjekt(this);
 
         this.vytvorKarty(velkostHry);
-
-        //System.out.println(this.nahodneFarebneKombinacie);
-
-        //this.karty.get(0).otoc();
-        //this.karty.get(3).otoc();
-        //this.karty.get(6).otoc();
         System.out.println(this.karty);
     }
 
@@ -64,7 +58,6 @@ public class HernaPlocha {
                 for (int i = 0; i <= 5; i ++) {
                     try {
                         this.karta = new HernaKarta(i, j, nahodneFarebneKombinacie.get(k));
-                        System.out.wait(15000);
                     } catch (Exception e){}
 
                     this.karty.add(this.karta);
@@ -75,7 +68,7 @@ public class HernaPlocha {
         }
     }
 
-    public void vyberSuradnice(int kliknutyX, int kliknutyY) { //TODO: DOROB KLIK
+    public void vyberSuradnice(int kliknutyX, int kliknutyY) {
         int vyberKartuX = 0;
         int vyberKartuY = 0;
         if(kliknutyY >= 50 && kliknutyX >= 50) {
@@ -104,11 +97,6 @@ public class HernaPlocha {
                     break;
             }
 
-            System.out.println("X: " + vyberKartuX);
-            System.out.println("Y: " + vyberKartuY);
-            System.out.println("///////////////");
-
-
             if(vyberKartuY == 0) {
                 karty.get(vyberKartuX).otoc();
             } else if(vyberKartuY == 1) {
@@ -116,38 +104,6 @@ public class HernaPlocha {
             } else if(vyberKartuY == 2) {
                 karty.get(vyberKartuX+12).otoc();
             }
-
-
-
-
-
-
-
         }
-
-
-
-
-
-        //if (kliknutyY >= 50 && suradnicaY % 3 >= 1) {
-
-
-        //suradnica % 3 = 1 or 2
-
     }
-
-
-    /*
-    public void vyberSuradnice(int kliknutyX, int kliknutyY) {
-        //switch (pocetCiselVArray)
-        int polohaKurzoraX = ( kliknutyX + this.velkostX * 10 ) / 110;
-        int polohaKurzoraY = ( kliknutyY + this.velkostX * 10 ) / 110;
-
-        this.zobrazUrcenuKartu(polohaKurzoraX, polohaKurzoraY);
-    }
-    *
-    *
-    *
-    * */
-
 }

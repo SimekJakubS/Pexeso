@@ -26,11 +26,6 @@ public class Hra {
         this.platno.setVisible(true);
 
         this.hernaPlocha = new HernaPlocha(menoHraca1, menoHraca2, velkostHry);
-
-
-
-
-
     }
 
     private int vyberVelkostHry(int velkostHry) {

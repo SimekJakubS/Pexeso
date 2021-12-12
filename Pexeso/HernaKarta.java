@@ -7,7 +7,6 @@ public class HernaKarta {
     private int posunX = 0;
     private int posunY = 0;
 
-
     public HernaKarta(int surX, int surY, int farba) {
 
         this.posunX = posunX;
@@ -29,9 +28,6 @@ public class HernaKarta {
 
         this.vyberFarbu(farba);
         this.zakryta.zobraz();
-
-
-
     }
 
     public void otoc() {
@@ -91,7 +87,6 @@ public class HernaKarta {
             default:
                 this.posunY = 0;
                 break;
-
         }
 
     }
