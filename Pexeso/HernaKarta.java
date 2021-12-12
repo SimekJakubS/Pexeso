@@ -4,24 +4,95 @@ public class HernaKarta {
     private Stvorec odokryta;
     private Kruh kruh;
     private boolean jeOdokryta = true;
+    private int posunX = 0;
+    private int posunY = 0;
 
 
     public HernaKarta(int surX, int surY, int farba) {
 
+        this.posunX = posunX;
+        this.posunY = posunY;
+
+        this.vypocitajPosun(surX, surY);
+
         this.zakryta = new Stvorec();
-        this.zakryta.posunVodorovne(surX);
-        this.zakryta.posunZvisle(surY);
+        this.zakryta.posunVodorovne(posunX);
+        this.zakryta.posunZvisle(posunY);
 
         this.odokryta = new Stvorec();
-        this.odokryta.posunVodorovne(surX);
-        this.odokryta.posunZvisle(surY);
+        this.odokryta.posunVodorovne(posunX);
+        this.odokryta.posunZvisle(posunY);
 
         this.kruh = new Kruh();
-        this.kruh.posunVodorovne(surX);
-        this.kruh.posunZvisle(surY);
+        this.kruh.posunVodorovne(posunX);
+        this.kruh.posunZvisle(posunY);
 
         this.vyberFarbu(farba);
         this.zakryta.zobraz();
+
+
+
+    }
+
+    public void otoc() {
+        if (this.jeOdokryta) {
+            this.zakryta.skry();
+            this.odokryta.zobraz();
+            this.kruh.zobraz();
+        } else if (!this.jeOdokryta) {
+            this.odokryta.skry();
+            this.kruh.skry();
+            this.zakryta.zobraz();
+
+        }
+
+        if (!jeOdokryta) jeOdokryta = true;
+        else jeOdokryta = false;
+    }
+
+    private void vypocitajPosun (int surX, int surY) {
+
+        switch (surX) {
+            case 1:
+                this.posunX = 200;
+                break;
+
+            case 2:
+                this.posunX = 400;
+                break;
+
+            case 3:
+                this.posunX = 600;
+                break;
+
+            case 4:
+                this.posunX = 800;
+                break;
+
+            case 5:
+                this.posunX = 1000;
+                break;
+
+            default:
+                this.posunX = 0;
+                break;
+
+        }
+
+        switch (surY) {
+            case 1:
+                this.posunY = 150;
+                break;
+
+            case 2:
+                this.posunY = 300;
+                break;
+
+            default:
+                this.posunY = 0;
+                break;
+
+        }
 
     }
 
@@ -82,22 +153,6 @@ public class HernaKarta {
                 break;
             }
         }
-    }
-
-    public void otoc() {
-        if (this.jeOdokryta) {
-            this.zakryta.skry();
-            this.odokryta.zobraz();
-            this.kruh.zobraz();
-        } else if (!this.jeOdokryta) {
-            this.odokryta.skry();
-            this.kruh.skry();
-            this.zakryta.zobraz();
-
-        }
-
-        if (!jeOdokryta) jeOdokryta = true;
-        else jeOdokryta = false;
     }
 
 }

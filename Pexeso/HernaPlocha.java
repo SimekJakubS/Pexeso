@@ -20,9 +20,9 @@ public class HernaPlocha {
 
         //System.out.println(this.nahodneFarebneKombinacie);
 
-        this.karty.get(0).otoc();
-        this.karty.get(3).otoc();
-        this.karty.get(6).otoc();
+        //this.karty.get(0).otoc();
+        //this.karty.get(3).otoc();
+        //this.karty.get(6).otoc();
         System.out.println(this.karty);
     }
 
@@ -37,10 +37,13 @@ public class HernaPlocha {
             Collections.shuffle(this.nahodneFarebneKombinacie);
             int k = 0;
 
-            for (int i = 0; i <= 600; i += 200) {
-                for (int j = 0; j <= 400; j += 200) {
+            for (int i = 0; i <= 3; i++) {
+                for (int j = 0; j <= 2; j++) {
 
-                    this.karta = new HernaKarta(i, j, nahodneFarebneKombinacie.get(k));
+                    try {
+                        this.karta = new HernaKarta(i, j, nahodneFarebneKombinacie.get(k));
+                    } catch (Exception e){}
+
                     this.karty.add(this.karta);
                     k++;
                 }
@@ -57,10 +60,13 @@ public class HernaPlocha {
             Collections.shuffle(this.nahodneFarebneKombinacie);
             int k = 0;
 
-            for (int i = 0; i <= 1000; i += 200) {
-                for (int j = 0; j <= 400; j += 200) {
+            for (int i = 0; i <= 5; i ++) {
+                for (int j = 0; j <= 2; j ++) {
 
-                    this.karta = new HernaKarta(i, j, nahodneFarebneKombinacie.get(k));
+                    try {
+                        this.karta = new HernaKarta(i, j, nahodneFarebneKombinacie.get(k));
+                    } catch (Exception e){}
+
                     this.karty.add(this.karta);
                     k++;
                 }
@@ -69,11 +75,19 @@ public class HernaPlocha {
     }
 
     public void vyberSuradnice(int kliknutyX, int kliknutyY) { //TODO: DOROB KLIK
-        int polohaKurzoraX = (kliknutyX);
-        int polohaKurzoraY = (kliknutyY);
+        //int polohaKurzoraX = (kliknutyX);
+        //int polohaKurzoraY = (kliknutyY);
 
         System.out.println(kliknutyX + "+" + kliknutyY);
+
+        switch (kliknutyX) {
+            case 0:
+                break;
+
+        }
+
     }
+
 
     /*
     public void vyberSuradnice(int kliknutyX, int kliknutyY) {
