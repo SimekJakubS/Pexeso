@@ -18,4 +18,9 @@ public class Hrac {
     public int getPocetBodov() {
         return this.pocetBodov;
     }
+
+    public void incPocetBodov () {
+        this.pocetBodov++;
+        System.out.println("NavysenyPocetBodov");
+    }
 }

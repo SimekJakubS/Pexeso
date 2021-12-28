@@ -3,9 +3,10 @@ public class HernaKarta {
     private Stvorec zakryta;
     private Stvorec odokryta;
     private Kruh kruh;
-    private boolean jeOdokryta = true;
+    private boolean jeOdokryta = false;
     private int posunX = 0;
     private int posunY = 0;
+    private int farebnaKombinacia;
 
     public HernaKarta(int surX, int surY, int farba) {
 
@@ -28,6 +29,15 @@ public class HernaKarta {
 
         this.vyberFarbu(farba);
         this.zakryta.zobraz();
+
+    }
+
+    public boolean getJeOdokryta() {
+        return this.jeOdokryta;
+    }
+
+    public int getFarebnaKombinacia () {
+        return this.farebnaKombinacia;
     }
 
     public void otoc() {
@@ -94,63 +104,73 @@ public class HernaKarta {
 
     }
 
-    private void vyberFarbu(int farebnaKombinacia) {
+    private void vyberFarbu (int farebnaKombinacia) {
         switch (farebnaKombinacia) {
             case 1: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("yellow");
                 this.kruh.zmenFarbu("blue");
+                this.farebnaKombinacia = 1;
                 break;
             }
             case 2: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("blue");
                 this.kruh.zmenFarbu("yellow");
+                this.farebnaKombinacia = 2;
                 break;
             }
             case 3: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("green");
                 this.kruh.zmenFarbu("yellow");
+                this.farebnaKombinacia = 3;
                 break;
             }
             case 4: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("yellow");
                 this.kruh.zmenFarbu("green");
+                this.farebnaKombinacia = 4;
                 break;
             }
             case 5: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("blue");
                 this.kruh.zmenFarbu("green");
+                this.farebnaKombinacia = 5;
                 break;
             }
             case 6: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("green");
                 this.kruh.zmenFarbu("blue");
+                this.farebnaKombinacia = 6;
                 break;
             }
             case 7: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("yellow");
                 this.kruh.zmenFarbu("red");
+                this.farebnaKombinacia = 7;
                 break;
             }
             case 8: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("blue");
                 this.kruh.zmenFarbu("red");
+                this.farebnaKombinacia = 8;
                 break;
             }
             case 9: {
                 this.zakryta.zmenFarbu("red");
                 this.odokryta.zmenFarbu("green");
                 this.kruh.zmenFarbu("red");
+                this.farebnaKombinacia = 9;
                 break;
             }
         }
     }
+
 
 }

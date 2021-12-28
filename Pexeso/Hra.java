@@ -8,10 +8,12 @@ public class Hra {
     private int maxPocetBodov;
     private HernaPlocha hernaPlocha;
     private Platno platno;
+    private boolean hrac1NaTahu = true;
 
     //constructor
     public Hra(String menoHraca1, String menoHraca2, int velkostHry) {
         this.maxPocetBodov = maxPocetBodov;
+        this.hrac1NaTahu = hrac1NaTahu;
 
         this.vyberVelkostHry(velkostHry);
 
@@ -40,12 +42,33 @@ public class Hra {
         return this.maxPocetBodov;
     }
 
-    public boolean getHraPokracuje() {
+    public boolean getHraSkoncila() {
         if (this.hrac1.getPocetBodov() + this.hrac2.getPocetBodov() == maxPocetBodov) {
             this.hraSkoncila = true;
         }
         return this.hraSkoncila;
     }
+
+    public boolean getHrac1NaTahu() {
+        return this.hrac1NaTahu;
+    }
+
+    public void pridajBody() {
+        if (this.hrac1NaTahu) {
+            this.hrac1.incPocetBodov();
+        } else {
+            this.hrac2.incPocetBodov();
+        }
+    }
+
+    public int getPocetBodovHrac1 () {
+        return this.hrac1.getPocetBodov();
+    }
+
+    public int getPocetBodovHrac2 () {
+        return this.hrac2.getPocetBodov();
+    }
+
 
     //TODO: dorob osetrovanie poctu bodov a vyhodnocovanie vitaza
 }
