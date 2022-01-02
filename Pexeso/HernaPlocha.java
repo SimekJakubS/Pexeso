@@ -18,7 +18,6 @@ public class HernaPlocha {
         this.nahodneFarebneKombinacie = nahodneFarebneKombinacie;
         this.otocenaDvojica = otocenaDvojica;
         this.dveOtocene = dveOtocene;
-
         this.platno = Platno.dajPlatno();
         this.platno.setVisible(true);
         this.manazer.spravujObjekt(this);
@@ -103,7 +102,6 @@ public class HernaPlocha {
             }
         }
         this.jeVybrata = false;
-
     }
 
     private void vyberKartuZoSuradnic (int suradnicaX, int suradnicaY, int vyberKartuX, int vyberKartuY) {
@@ -150,7 +148,7 @@ public class HernaPlocha {
             //}
     }
 
-    public void prevratKarty() {
+    private void prevratKarty() {
 
         if (this.otocenaDvojica.size() == 2) {
             for (HernaKarta x :this.karty) {
@@ -158,6 +156,14 @@ public class HernaPlocha {
                     x.otoc();
                 }
             }
+
+            try {
+                System.out.println(this.hra.getHraSkoncila());
+            } catch (Exception e) {
+                System.out.println("Neda sa");
+            }
+
+
         }
 
     }

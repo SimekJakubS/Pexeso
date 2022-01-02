@@ -6,9 +6,9 @@ public class Hra {
     private Hrac hrac2;
     private boolean hraSkoncila;
     private int maxPocetBodov;
-    private HernaPlocha hernaPlocha;
     private Platno platno;
     private boolean hrac1NaTahu = true;
+    private int pocetKol;
 
     //constructor
     public Hra(String menoHraca1, String menoHraca2, int velkostHry) {
@@ -24,8 +24,6 @@ public class Hra {
 
         this.platno = Platno.dajPlatno();
         this.platno.setVisible(true);
-
-        this.hernaPlocha = new HernaPlocha(menoHraca1, menoHraca2, velkostHry);
     }
 
     public boolean getHraSkoncila() {
@@ -45,6 +43,14 @@ public class Hra {
         } else {
             this.hrac2.incPocetBodov();
         }
+    }
+
+    public void dalsieKolo() {
+        if (this.hrac1NaTahu) {
+            System.out.println("Toto je " + this.pocetKol + ". kolo!");
+        }
+
+        this.hrac1NaTahu = !this.hrac1NaTahu;
     }
 
     public int getPocetBodovHrac1 () {
