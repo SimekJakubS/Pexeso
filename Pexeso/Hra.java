@@ -61,18 +61,5 @@ public class Hra {
         return this.hrac2.getPocetBodov();
     }
 
-
     //TODO: dorob osetrovanie poctu bodov a vyhodnocovanie vitaza
-
-
-    /*
-    private void cakaj() {
-        try {
-            TimeUnit.SECONDS.sleep(1);
-
-        } catch (InterruptedException e) {
-            System.out.println("COULDN'T WAIT");
-        }
-    }
-     */
 }

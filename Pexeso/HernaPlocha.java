@@ -6,7 +6,7 @@ public class HernaPlocha {
     private Platno platno;
     private Hra hra;
     private HernaKarta karta;
-    private final Manazer manazer = new Manazer();
+    private Refresh refresh;
     private ArrayList<HernaKarta> karty = new ArrayList<>();
     private ArrayList<Integer> nahodneFarebneKombinacie = new ArrayList<>();
     private ArrayList<HernaKarta> otocenaDvojica = new ArrayList<>();
@@ -21,7 +21,8 @@ public class HernaPlocha {
         this.dveOtocene = dveOtocene;
         this.platno = Platno.dajPlatno();
         this.platno.setVisible(true);
-        this.manazer.spravujObjekt(this);
+        this.refresh = new Refresh();
+
 
         this.vytvorKarty(velkostHry);
     }
@@ -98,9 +99,8 @@ public class HernaPlocha {
             this.karty.get(this.cisloKarty).otoc();
 
             if (this.otocenaDvojica.size() == 2) {
-                this.prevratKarty();
-                this.otocenaDvojica.clear();
                 this.dalsieKolo();
+                this.otocenaDvojica.clear();
             }
         }
         this.jeVybrata = false;
@@ -141,22 +141,31 @@ public class HernaPlocha {
     }
 
     public boolean getHracNaTahu () {
-        return hrac1NaTahu;
+        return this.hrac1NaTahu;
+    }
+
+    public ArrayList<HernaKarta> getOtocenaDvojica() {
+        return this.otocenaDvojica;
+    }
+
+    public ArrayList<HernaKarta> getKarty() {
+        return this.karty;
     }
 
     private void dalsieKolo() {
         this.hrac1NaTahu = !this.hrac1NaTahu;
         System.out.println("DALSIE KOLO TRIGGERED");
-
     }
 
-    private void prevratKarty() {
-        if (this.otocenaDvojica.size() == 2) {
-            for (HernaKarta x : this.karty) {
+    public void prevratKarty() {
+        if (this.getOtocenaDvojica().size() == 2) {
+
+            for (HernaKarta x : this.getKarty()) {
                 if (!x.getJeOdokryta()) {
                     x.otoc();
                 }
             }
         }
     }
+
 }
