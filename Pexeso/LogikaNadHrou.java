@@ -15,8 +15,9 @@ public class LogikaNadHrou {
     }
 
     public void vyberSuradnice(int kliknutyX, int kliknutyY) {
-
         this.hernaPlocha.vyberSuradnice(kliknutyX, kliknutyY);
         this.hrac1NaTahu = this.hernaPlocha.getHracNaTahu();
+
+
     }
 }
