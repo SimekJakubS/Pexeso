@@ -26,17 +26,6 @@ public class Hra {
         this.platno.setVisible(true);
     }
 
-    public boolean getHraSkoncila() {
-        if (this.hrac1.getPocetBodov() + this.hrac2.getPocetBodov() == maxPocetBodov) {
-            this.hraSkoncila = true;
-        }
-        return this.hraSkoncila;
-    }
-
-    public boolean getHrac1NaTahu() {
-        return this.hrac1NaTahu;
-    }
-
     public void pridajBody() {
         if (this.hrac1NaTahu) {
             this.hrac1.incPocetBodov();
@@ -51,6 +40,17 @@ public class Hra {
         }
 
         this.hrac1NaTahu = !this.hrac1NaTahu;
+    }
+
+    public boolean getHraSkoncila() {
+        if (this.hrac1.getPocetBodov() + this.hrac2.getPocetBodov() == maxPocetBodov) {
+            this.hraSkoncila = true;
+        }
+        return this.hraSkoncila;
+    }
+
+    public boolean getHrac1NaTahu() {
+        return this.hrac1NaTahu;
     }
 
     public int getPocetBodovHrac1 () {

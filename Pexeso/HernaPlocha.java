@@ -13,6 +13,7 @@ public class HernaPlocha {
     private boolean dveOtocene = false;
     private boolean jeVybrata = false;
     private int cisloKarty;
+    private boolean hrac1NaTahu = true;
 
     public HernaPlocha(String menoHraca1, String menoHraca2, int velkostHry) {
         this.nahodneFarebneKombinacie = nahodneFarebneKombinacie;
@@ -99,6 +100,7 @@ public class HernaPlocha {
             if (this.otocenaDvojica.size() == 2) {
                 this.prevratKarty();
                 this.otocenaDvojica.clear();
+                this.dalsieKolo();
             }
         }
         this.jeVybrata = false;
@@ -138,33 +140,23 @@ public class HernaPlocha {
         }
     }
 
-    private void porovnajDvojicu() {
-            //int x1 = this.otocenaDvojica.get(0).getFarebnaKombinacia();
-            //int x2 = this.otocenaDvojica.get(1).getFarebnaKombinacia();
+    public boolean getHracNaTahu () {
+        return hrac1NaTahu;
+    }
 
-            //if(x1 == x2) {
-            //    this.hra.pridajBody();
-            //    System.out.println("Body Su:" + "H1:" + hra.getPocetBodovHrac1() + "|H2:" + hra.getPocetBodovHrac2());
-            //}
+    private void dalsieKolo() {
+        this.hrac1NaTahu = !this.hrac1NaTahu;
+        System.out.println("DALSIE KOLO TRIGGERED");
+
     }
 
     private void prevratKarty() {
-
         if (this.otocenaDvojica.size() == 2) {
-            for (HernaKarta x :this.karty) {
+            for (HernaKarta x : this.karty) {
                 if (!x.getJeOdokryta()) {
                     x.otoc();
                 }
             }
-
-            try {
-                System.out.println(this.hra.getHraSkoncila());
-            } catch (Exception e) {
-                System.out.println("Neda sa");
-            }
-
-
         }
-
     }
 }

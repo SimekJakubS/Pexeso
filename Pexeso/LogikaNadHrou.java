@@ -6,6 +6,8 @@ public class LogikaNadHrou {
         this.hra = new Hra(menoHraca1, menoHraca2, velkostHry);
         this.hernaPlocha = new HernaPlocha(menoHraca1, menoHraca2, velkostHry);
 
-        //TODO: DOKONCI TOTO, OVLADANIE KOL A PREPINANIE METOD MEDZI HRA A HERNA PLOCHA!
+        
+
+
     }
 }
