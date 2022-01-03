@@ -92,6 +92,11 @@ public class HernaPlocha {
                 this.vyberKartuZoSuradnic(suradnicaX, suradnicaY, vyberKartuX, vyberKartuY);
                 System.out.println(this.otocenaDvojica);
             }
+        } else if (kliknutyX <= 20 && kliknutyY <= 20 && this.otocenaDvojica.size() == 2) { //OSETRENIE REFRESH TLACIDLA
+            System.out.println("REFRESH TRIGGERED");
+            this.dalsieKolo();
+            this.otocenaDvojica.clear();
+            this.prevratKarty();
         }
 
         if (this.jeVybrata) {
@@ -99,8 +104,8 @@ public class HernaPlocha {
             this.karty.get(this.cisloKarty).otoc();
 
             if (this.otocenaDvojica.size() == 2) {
-                this.dalsieKolo();
-                this.otocenaDvojica.clear();
+                //this.dalsieKolo();
+                //this.otocenaDvojica.clear();
             }
         }
         this.jeVybrata = false;
@@ -158,12 +163,9 @@ public class HernaPlocha {
     }
 
     public void prevratKarty() {
-        if (this.getOtocenaDvojica().size() == 2) {
-
-            for (HernaKarta x : this.getKarty()) {
-                if (!x.getJeOdokryta()) {
-                    x.otoc();
-                }
+        for (HernaKarta x : this.getKarty()) {
+            if (!x.getJeOdokryta()) {
+                x.otoc();
             }
         }
     }

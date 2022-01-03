@@ -12,23 +12,11 @@ public class LogikaNadHrou {
         this.hernaPlocha = new HernaPlocha(menoHraca1, menoHraca2, velkostHry);
         this.manazer = new Manazer();
         this.manazer.spravujObjekt(this);
-
-
-
     }
 
     public void vyberSuradnice(int kliknutyX, int kliknutyY) {
 
         this.hernaPlocha.vyberSuradnice(kliknutyX, kliknutyY);
         this.hrac1NaTahu = this.hernaPlocha.getHracNaTahu();
-    }
-
-    private void cakaj() {
-        try {
-            TimeUnit.SECONDS.sleep(1);
-
-        } catch (InterruptedException e) {
-            System.out.println("COULDN'T WAIT");
-        }
     }
 }
