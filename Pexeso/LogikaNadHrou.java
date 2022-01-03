@@ -18,6 +18,11 @@ public class LogikaNadHrou {
         this.hernaPlocha.vyberSuradnice(kliknutyX, kliknutyY);
         this.hrac1NaTahu = this.hernaPlocha.getHracNaTahu();
 
+        this.hernaPlocha.kontrolujZhodnostDvojice();
 
+        if (hernaPlocha.isDveOtocene()) {
+            System.out.println("DVE ROVNAKE KARTY SU OTOCENE");
+        }
+        //ak je triggernutye toto tak pripis body
     }
 }

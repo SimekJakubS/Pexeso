@@ -23,7 +23,6 @@ public class HernaPlocha {
         this.platno.setVisible(true);
         this.refresh = new Refresh();
 
-
         this.vytvorKarty(velkostHry);
     }
 
@@ -86,7 +85,6 @@ public class HernaPlocha {
 
                 vyberKartuX = suradnicaX / 2;
                 int suradnicaY = ((((kliknutyY) - 50) / 50));  // /2 ONLY IF 0 || parna
-
                 this.cisloKarty = 0;
 
                 this.vyberKartuZoSuradnic(suradnicaX, suradnicaY, vyberKartuX, vyberKartuY);
@@ -99,14 +97,8 @@ public class HernaPlocha {
             this.prevratKarty();
         }
 
-        if (this.jeVybrata) {
-
+        if (this.jeVybrata) {  //HANDLING KARTY
             this.karty.get(this.cisloKarty).otoc();
-
-            if (this.otocenaDvojica.size() == 2) {
-                //this.dalsieKolo();
-                //this.otocenaDvojica.clear();
-            }
         }
         this.jeVybrata = false;
     }
@@ -170,4 +162,19 @@ public class HernaPlocha {
         }
     }
 
+    public void kontrolujZhodnostDvojice() {
+        if (this.otocenaDvojica.size() == 2) {
+            System.out.println("DVE KARTY SU OTOCENE");
+            if (this.otocenaDvojica.get(0).getFarebnaKombinacia() == this.otocenaDvojica.get(1).getFarebnaKombinacia()) {
+                this.dveOtocene = true;
+            } else {
+                this.dveOtocene = false;
+            }
+        }
+
+    }
+
+    public boolean isDveOtocene() {
+        return dveOtocene;
+    }
 }
