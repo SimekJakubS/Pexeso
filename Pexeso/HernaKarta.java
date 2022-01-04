@@ -7,29 +7,28 @@ public class HernaKarta {
     private int posunX = 0;
     private int posunY = 0;
     private int farebnaKombinacia;
+    private boolean uhadnuta = false;
 
     public HernaKarta(int surX, int surY, int farba) {
 
         this.posunX = posunX;
         this.posunY = posunY;
-
         this.vypocitajPosun(surX, surY);
-
         this.zakryta = new Stvorec();
         this.zakryta.posunVodorovne(this.posunX);
         this.zakryta.posunZvisle(this.posunY);
-
         this.odokryta = new Stvorec();
         this.odokryta.posunVodorovne(this.posunX);
         this.odokryta.posunZvisle(this.posunY);
-
         this.kruh = new Kruh();
         this.kruh.posunVodorovne(this.posunX);
         this.kruh.posunZvisle(this.posunY);
-
         this.vyberFarbu(farba);
         this.zakryta.zobraz();
+    }
 
+    public void setUhadnuta() {
+        this.uhadnuta = true;
     }
 
     public boolean getJeOdokryta() {
@@ -40,22 +39,27 @@ public class HernaKarta {
         return this.farebnaKombinacia;
     }
 
+    public boolean isUhadnuta() {
+        return this.uhadnuta;
+    }
+
     public void otoc() {
-        if (this.jeOdokryta) {
-            this.zakryta.skry();
-            this.odokryta.zobraz();
-            this.kruh.zobraz();
-        } else if (!this.jeOdokryta) {
-            this.odokryta.skry();
-            this.kruh.skry();
-            this.zakryta.zobraz();
+        if (!uhadnuta) {
+            if (this.jeOdokryta) {
+                this.zakryta.skry();
+                this.odokryta.zobraz();
+                this.kruh.zobraz();
+            } else if (!this.jeOdokryta) {
+                this.odokryta.skry();
+                this.kruh.skry();
+                this.zakryta.zobraz();
+            }
 
-        }
-
-        if (!this.jeOdokryta) {
-            this.jeOdokryta = true;
-        } else {
-            this.jeOdokryta = false;
+            if (!this.jeOdokryta) {
+                this.jeOdokryta = true;
+            } else {
+                this.jeOdokryta = false;
+            }
         }
     }
 
@@ -171,6 +175,4 @@ public class HernaKarta {
             }
         }
     }
-
-
 }

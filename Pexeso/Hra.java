@@ -6,7 +6,6 @@ public class Hra {
     private Hrac hrac2;
     private boolean hraSkoncila;
     private int maxPocetBodov;
-    private Platno platno;
     private boolean hrac1NaTahu = true;
     private int pocetKol;
 
@@ -21,16 +20,15 @@ public class Hra {
 
         hraci.add(this.hrac1);
         hraci.add(this.hrac2);
-
-        this.platno = Platno.dajPlatno();
-        this.platno.setVisible(true);
     }
 
     public void pridajBody() {
         if (this.hrac1NaTahu) {
             this.hrac1.incPocetBodov();
+            System.out.println("Hráč 1 dostáva bod!");
         } else {
             this.hrac2.incPocetBodov();
+            System.out.println("Hráč 1 dostáva bod!");
         }
     }
 

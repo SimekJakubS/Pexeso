@@ -4,16 +4,20 @@ import java.util.Collections;
 public class HernaPlocha {
 
     private Platno platno;
-    private Hra hra;
     private HernaKarta karta;
     private Refresh refresh;
     private ArrayList<HernaKarta> karty = new ArrayList<>();
     private ArrayList<Integer> nahodneFarebneKombinacie = new ArrayList<>();
     private ArrayList<HernaKarta> otocenaDvojica = new ArrayList<>();
-    private boolean dveOtocene = false;
-    private boolean jeVybrata = false;
+    private boolean dveOtocene;
+    private boolean jeVybrata;
+    private String menoHraca1;
+    private String menoHraca2;
+
     private int cisloKarty;
     private boolean hrac1NaTahu = true;
+    private boolean dveKartySuOtocene;
+    private boolean vitaznaDvojica;
 
     public HernaPlocha(String menoHraca1, String menoHraca2, int velkostHry) {
         this.nahodneFarebneKombinacie = nahodneFarebneKombinacie;
@@ -24,6 +28,9 @@ public class HernaPlocha {
         this.refresh = new Refresh();
 
         this.vytvorKarty(velkostHry);
+
+        this.menoHraca1 = menoHraca1;
+        this.menoHraca2 = menoHraca2;
     }
 
     private void vytvorKarty(int velkostHry) {
@@ -88,13 +95,15 @@ public class HernaPlocha {
                 this.cisloKarty = 0;
 
                 this.vyberKartuZoSuradnic(suradnicaX, suradnicaY, vyberKartuX, vyberKartuY);
-                System.out.println(this.otocenaDvojica);
+                //System.out.println(this.otocenaDvojica);
             }
         } else if (kliknutyX <= 20 && kliknutyY <= 20 && this.otocenaDvojica.size() == 2) { //OSETRENIE REFRESH TLACIDLA
-            System.out.println("REFRESH TRIGGERED");
-            this.dalsieKolo();
+            if (!this.vitaznaDvojica) {
+                //System.out.println("START DALSIEHO KOLA:");
+                this.prevratKarty();
+                this.dalsieKolo();
+            }    //AK JE VITRAZNA DVOJICA TRIGGERED TAK TOTO NEPOJDE
             this.otocenaDvojica.clear();
-            this.prevratKarty();
         }
 
         if (this.jeVybrata) {  //HANDLING KARTY
@@ -151,12 +160,16 @@ public class HernaPlocha {
 
     private void dalsieKolo() {
         this.hrac1NaTahu = !this.hrac1NaTahu;
-        System.out.println("DALSIE KOLO TRIGGERED");
+        if (this.hrac1NaTahu) {
+            System.out.println("Na rade je: " + this.menoHraca1);
+        } else {
+            System.out.println("Na rade je: " + this.menoHraca2);
+        }
     }
 
     public void prevratKarty() {
         for (HernaKarta x : this.getKarty()) {
-            if (!x.getJeOdokryta()) {
+            if (!x.getJeOdokryta() && !x.isUhadnuta()) {
                 x.otoc();
             }
         }
@@ -164,17 +177,30 @@ public class HernaPlocha {
 
     public void kontrolujZhodnostDvojice() {
         if (this.otocenaDvojica.size() == 2) {
-            System.out.println("DVE KARTY SU OTOCENE");
+            this.dveKartySuOtocene = true;
             if (this.otocenaDvojica.get(0).getFarebnaKombinacia() == this.otocenaDvojica.get(1).getFarebnaKombinacia()) {
                 this.dveOtocene = true;
+                this.vitaznaDvojica = true;
+                //TU dorob zakazanie prevracania karty
+
             } else {
                 this.dveOtocene = false;
+                this.vitaznaDvojica = false;
             }
         }
 
+        this.dveKartySuOtocene = false;
     }
 
-    public boolean isDveOtocene() {
-        return dveOtocene;
+    public boolean getDveKartySuOtocene() {
+        return this.dveKartySuOtocene;
+    }
+
+    public void resetDveOtocene () {
+        this.dveOtocene = false;
+     }
+
+    public boolean isDveRovnakeOtocene() {
+        return this.dveOtocene;
     }
 }
