@@ -34,7 +34,7 @@ public class Hra {
 
     public void dalsieKolo() {
         if (this.hrac1NaTahu) {
-            System.out.println("Toto je " + this.pocetKol + ". kolo!");
+            //System.out.println("Toto je " + this.pocetKol + ". kolo!");
         }
 
         this.hrac1NaTahu = !this.hrac1NaTahu;

@@ -97,7 +97,7 @@ public class HernaPlocha {
                 this.vyberKartuZoSuradnic(suradnicaX, suradnicaY, vyberKartuX, vyberKartuY);
                 //System.out.println(this.otocenaDvojica);
             }
-        } else if (kliknutyX <= 20 && kliknutyY <= 20 && this.otocenaDvojica.size() == 2) { //OSETRENIE REFRESH TLACIDLA
+        } else if (kliknutyX <= 30 && kliknutyY <= 30 && this.otocenaDvojica.size() == 2) { //OSETRENIE REFRESH TLACIDLA
             if (!this.vitaznaDvojica) {
                 //System.out.println("START DALSIEHO KOLA:");
                 this.prevratKarty();
