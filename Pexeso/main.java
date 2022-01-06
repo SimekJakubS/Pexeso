@@ -12,6 +12,11 @@ public class main {
         System.out.println("Zadajte meno hráča 2: ");
         String menoHraca2Scanner = scanner1.nextLine();
 
-        logikaNadHrou = new LogikaNadHrou(menoHraca1Scanner, menoHraca2Scanner, 2);
+        System.out.println("Zadajte veľkosť hry: ");
+        String velkostHryScanner = scanner1.nextLine();
+        int velkostHryScannerInt = Integer.parseInt(velkostHryScanner);
+
+        //logikaNadHrou = new LogikaNadHrou(menoHraca1Scanner, menoHraca2Scanner, 1);
+        logikaNadHrou = new LogikaNadHrou(menoHraca1Scanner, menoHraca2Scanner, velkostHryScannerInt);
     }
 }

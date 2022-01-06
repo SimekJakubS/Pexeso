@@ -2,6 +2,7 @@ public class LogikaNadHrou {
     private Hra hra;
     private HernaPlocha hernaPlocha;
     private Manazer manazer;
+
     private boolean hrac1NaTahu;
     private int pricitanieBodovCounter;
 

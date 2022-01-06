@@ -3,6 +3,7 @@ public class HernaKarta {
     private Stvorec zakryta;
     private Stvorec odokryta;
     private Kruh kruh;
+
     private boolean jeOdokryta = false;
     private int posunX = 0;
     private int posunY = 0;

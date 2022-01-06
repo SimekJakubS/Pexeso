@@ -6,6 +6,7 @@ public class HernaPlocha {
     private Platno platno;
     private HernaKarta karta;
     private Refresh refresh;
+
     private ArrayList<HernaKarta> karty = new ArrayList<>();
     private ArrayList<Integer> nahodneFarebneKombinacie = new ArrayList<>();
     private ArrayList<HernaKarta> otocenaDvojica = new ArrayList<>();
@@ -18,6 +19,7 @@ public class HernaPlocha {
     private boolean hrac1NaTahu = true;
     private boolean dveKartySuOtocene;
     private boolean vitaznaDvojica;
+    private int velkostHry;
 
     public HernaPlocha(String menoHraca1, String menoHraca2, int velkostHry) {
         this.nahodneFarebneKombinacie = nahodneFarebneKombinacie;
@@ -26,6 +28,8 @@ public class HernaPlocha {
         this.platno = Platno.dajPlatno();
         this.platno.setVisible(true);
         this.refresh = new Refresh();
+
+        this.velkostHry = velkostHry;
 
         this.vytvorKarty(velkostHry);
 
@@ -44,8 +48,9 @@ public class HernaPlocha {
             Collections.shuffle(this.nahodneFarebneKombinacie);
             int k = 0;
 
-            for (int i = 0; i <= 3; i++) {
-                for (int j = 0; j <= 2; j++) {
+            for (int j = 0; j <= 2; j++) {
+                for (int i = 0; i <= 3; i++) {
+
 
                     try {
                         this.karta = new HernaKarta(i, j, this.nahodneFarebneKombinacie.get(k));
@@ -84,66 +89,134 @@ public class HernaPlocha {
         int vyberKartuX = 0;
         int vyberKartuY = 0;
 
-        if (kliknutyY >= 50 && kliknutyX >= 50 && this.otocenaDvojica.size() < 2) {
-            //VYBER SURADNICU PRE X
-            int suradnicaX = (((kliknutyX - 50) / 100));
+        if (this.velkostHry == 1) {
+            if (kliknutyY >= 50 && kliknutyX >= 50 && this.otocenaDvojica.size() < 2 && kliknutyX <= 750) {
+                //VYBER SURADNICU PRE X
+                int suradnicaX = (((kliknutyX - 50) / 200));
 
-            if (suradnicaX % 2 == 0) {
+                    vyberKartuX = suradnicaX / 2;
+                    int suradnicaY = ((((kliknutyY) -50) / 50) / 3);  // /2 ONLY IF 0 || parna
+                    this.cisloKarty = 0;
 
-                vyberKartuX = suradnicaX / 2;
-                int suradnicaY = ((((kliknutyY) - 50) / 50));  // /2 ONLY IF 0 || parna
-                this.cisloKarty = 0;
+                    this.vyberKartuZoSuradnic(suradnicaX, suradnicaY, vyberKartuX, vyberKartuY);
 
-                this.vyberKartuZoSuradnic(suradnicaX, suradnicaY, vyberKartuX, vyberKartuY);
-                //System.out.println(this.otocenaDvojica);
+
+            } else if (kliknutyX <= 30 && kliknutyY <= 30 && this.otocenaDvojica.size() == 2) { //OSETRENIE REFRESH TLACIDLA
+                if (!this.vitaznaDvojica) {
+                    //System.out.println("START DALSIEHO KOLA:");
+                    this.prevratKarty();
+                    this.dalsieKolo();
+                }    //AK JE VITRAZNA DVOJICA TRIGGERED TAK TOTO NEPOJDE
+                this.otocenaDvojica.clear();
             }
-        } else if (kliknutyX <= 30 && kliknutyY <= 30 && this.otocenaDvojica.size() == 2) { //OSETRENIE REFRESH TLACIDLA
-            if (!this.vitaznaDvojica) {
-                //System.out.println("START DALSIEHO KOLA:");
-                this.prevratKarty();
-                this.dalsieKolo();
-            }    //AK JE VITRAZNA DVOJICA TRIGGERED TAK TOTO NEPOJDE
-            this.otocenaDvojica.clear();
-        }
 
-        if (this.jeVybrata) {  //HANDLING KARTY
-            this.karty.get(this.cisloKarty).otoc();
+            if (this.jeVybrata) {  //HANDLING KARTY
+                this.karty.get(this.cisloKarty).otoc();
+            }
+
+        } else {
+            if (kliknutyY >= 50 && kliknutyX >= 50 && this.otocenaDvojica.size() < 2) {
+                //VYBER SURADNICU PRE X
+                int suradnicaX = (((kliknutyX - 50) / 100));
+
+                if (suradnicaX % 2 == 0) {
+
+                    vyberKartuX = suradnicaX / 2;
+                    int suradnicaY = ((((kliknutyY) - 50) / 50));  // /2 ONLY IF 0 || parna
+                    this.cisloKarty = 0;
+
+                    this.vyberKartuZoSuradnic(suradnicaX, suradnicaY, vyberKartuX, vyberKartuY);
+                    //System.out.println(this.otocenaDvojica);
+                }
+            } else if (kliknutyX <= 30 && kliknutyY <= 30 && this.otocenaDvojica.size() == 2) { //OSETRENIE REFRESH TLACIDLA
+                if (!this.vitaznaDvojica) {
+                    this.prevratKarty();
+                    this.dalsieKolo();
+                }    //AK JE VITRAZNA DVOJICA TRIGGERED TAK TOTO NEPOJDE
+                this.otocenaDvojica.clear();
+            }
+
+            if (this.jeVybrata) {  //HANDLING KARTY
+                this.karty.get(this.cisloKarty).otoc();
+            }
         }
         this.jeVybrata = false;
     }
 
     private void vyberKartuZoSuradnic (int suradnicaX, int suradnicaY, int vyberKartuX, int vyberKartuY) {
-        switch (suradnicaY) {
-            case 0:
-            case 1:
-                vyberKartuY = 0;
-                if (this.karty.get(vyberKartuX).getJeOdokryta()) {
-                    this.otocenaDvojica.add(this.karty.get(vyberKartuX));
-                }
-                this.cisloKarty = (vyberKartuX);
-                this.jeVybrata = true;
-                break;
+        if (this.velkostHry == 1) {
 
-            case 3:
-            case 4:
-                vyberKartuY = 1;
-                if (this.karty.get(vyberKartuX + 6).getJeOdokryta()) {
-                    this.otocenaDvojica.add(this.karty.get(vyberKartuX + 6));
-                }
-                this.cisloKarty = (vyberKartuX + 6);
-                this.jeVybrata = true;
-                break;
+            System.out.println(suradnicaX);
+            System.out.println(suradnicaY);
+            System.out.println("Karty: " + this.karty);
 
-            case 6:
-            case 7:
-                vyberKartuY = 2;
-                if (this.karty.get(vyberKartuX + 12).getJeOdokryta()) {
-                    this.otocenaDvojica.add(this.karty.get(vyberKartuX + 12));
-                }
-                this.cisloKarty = (vyberKartuX + 12);
-                this.jeVybrata = true;
-                break;
+
+            switch (suradnicaY) {
+                case 0:
+                    if (this.karty.get(suradnicaX).getJeOdokryta()) {
+                        this.otocenaDvojica.add(this.karty.get(suradnicaX));
+                    }
+                    System.out.println(this.karty.get(suradnicaX));
+                    this.cisloKarty = suradnicaX;
+                    this.jeVybrata = true;
+                    break;
+
+                case 1:
+
+                    if (this.karty.get(suradnicaX + 4).getJeOdokryta()) {
+                        this.otocenaDvojica.add(this.karty.get(suradnicaX + 4));
+                    }
+                    System.out.println(this.karty.get(suradnicaX+4));
+                    System.out.println(cisloKarty);
+                    this.cisloKarty = suradnicaX + 4;
+                    this.jeVybrata = true;
+                    break;
+
+                case 2:
+                    if (this.karty.get(suradnicaX+8).getJeOdokryta()) {
+                        this.otocenaDvojica.add(this.karty.get(suradnicaX+8));
+                    }
+                    System.out.println(this.karty.get(suradnicaX+8));
+                    System.out.println(this.cisloKarty);
+                    this.cisloKarty = suradnicaX + 8;
+                    this.jeVybrata = true;
+                    break;
+            }
+
+        } else if (velkostHry == 2){
+            switch (suradnicaY) {
+                case 0:
+                case 1:
+                    vyberKartuY = 0;
+                    if (this.karty.get(vyberKartuX).getJeOdokryta()) {
+                        this.otocenaDvojica.add(this.karty.get(vyberKartuX));
+                    }
+                    this.cisloKarty = (vyberKartuX);
+                    this.jeVybrata = true;
+                    break;
+
+                case 3:
+                case 4:
+                    vyberKartuY = 1;
+                    if (this.karty.get(vyberKartuX + 6).getJeOdokryta()) {
+                        this.otocenaDvojica.add(this.karty.get(vyberKartuX + 6));
+                    }
+                    this.cisloKarty = (vyberKartuX + 6);
+                    this.jeVybrata = true;
+                    break;
+
+                case 6:
+                case 7:
+                    vyberKartuY = 2;
+                    if (this.karty.get(vyberKartuX + 12).getJeOdokryta()) {
+                        this.otocenaDvojica.add(this.karty.get(vyberKartuX + 12));
+                    }
+                    this.cisloKarty = (vyberKartuX + 12);
+                    this.jeVybrata = true;
+                    break;
+            }
         }
+
     }
 
     public boolean getHracNaTahu () {
