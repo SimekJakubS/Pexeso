@@ -92,12 +92,11 @@ public class HernaPlocha {
                 //VYBER SURADNICU PRE X
                 int suradnicaX = (((kliknutyX - 50) / 200));
 
-                    vyberKartuX = suradnicaX / 2;
-                    int suradnicaY = ((((kliknutyY) -50) / 50) / 3);  // /2 ONLY IF 0 || parna
-                    this.cisloKarty = 0;
+                vyberKartuX = suradnicaX / 2;
+                int suradnicaY = ((((kliknutyY) - 50) / 50) / 3);  // /2 ONLY IF 0 || parna
+                this.cisloKarty = 0;
 
-                    this.vyberKartuZoSuradnic(suradnicaX, suradnicaY, vyberKartuX, vyberKartuY);
-
+                this.vyberKartuZoSuradnic(suradnicaX, suradnicaY, vyberKartuX, vyberKartuY);
 
             } else if (kliknutyX <= 30 && kliknutyY <= 30 && this.otocenaDvojica.size() == 2) { //OSETRENIE REFRESH TLACIDLA
                 if (!this.vitaznaDvojica) {
@@ -161,15 +160,15 @@ public class HernaPlocha {
                     break;
 
                 case 2:
-                    if (this.karty.get(suradnicaX+8).getJeOdokryta()) {
-                        this.otocenaDvojica.add(this.karty.get(suradnicaX+8));
+                    if (this.karty.get(suradnicaX + 8).getJeOdokryta()) {
+                        this.otocenaDvojica.add(this.karty.get(suradnicaX + 8));
                     }
                     this.cisloKarty = suradnicaX + 8;
                     this.jeVybrata = true;
                     break;
             }
 
-        } else if (velkostHry == 2){
+        } else if (this.velkostHry == 2) {
             switch (suradnicaY) {
                 case 0:
                 case 1:
@@ -267,7 +266,7 @@ public class HernaPlocha {
 
     public void resetDveOtocene () {
         this.dveOtocene = false;
-     }
+    }
 
     public boolean isDveRovnakeOtocene() {
         return this.dveOtocene;

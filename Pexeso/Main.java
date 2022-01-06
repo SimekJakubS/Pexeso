@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class main {
+public class Main {
 
     private static LogikaNadHrou logikaNadHrou;
 
@@ -16,7 +16,6 @@ public class main {
         String velkostHryScanner = scanner1.nextLine();
         int velkostHryScannerInt = Integer.parseInt(velkostHryScanner);
 
-        //logikaNadHrou = new LogikaNadHrou(menoHraca1Scanner, menoHraca2Scanner, 1);
         logikaNadHrou = new LogikaNadHrou(menoHraca1Scanner, menoHraca2Scanner, velkostHryScannerInt);
     }
 }

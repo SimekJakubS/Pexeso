@@ -14,8 +14,8 @@ public class Hra {
 
         this.hrac1 = new Hrac(menoHraca1);
         this.hrac2 = new Hrac(menoHraca2);
-        hraci.add(this.hrac1);
-        hraci.add(this.hrac2);
+        this.hraci.add(this.hrac1);
+        this.hraci.add(this.hrac2);
 
         this.hrac1NaTahu = hrac1NaTahu;
         this.menoHraca1 = menoHraca1;
@@ -25,17 +25,14 @@ public class Hra {
     public void pridajBody() {
         if (this.hrac1NaTahu) {
             this.hrac1.incPocetBodov();
-            System.out.println(menoHraca1 + " dostáva bod!");
+            System.out.println(this.menoHraca1 + " dostáva bod!");
         } else {
             this.hrac2.incPocetBodov();
-            System.out.println(menoHraca2 + " dostáva bod!");
+            System.out.println(this.menoHraca2 + " dostáva bod!");
         }
     }
 
     public void dalsieKolo() {
-        if (this.hrac1NaTahu) {
-        }
-
         this.hrac1NaTahu = !this.hrac1NaTahu;
     }
 

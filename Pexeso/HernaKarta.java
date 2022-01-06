@@ -45,7 +45,7 @@ public class HernaKarta {
     }
 
     public void otoc() {
-        if (!uhadnuta) {
+        if (!this.uhadnuta) {
             if (this.jeOdokryta) {
                 this.zakryta.skry();
                 this.odokryta.zobraz();

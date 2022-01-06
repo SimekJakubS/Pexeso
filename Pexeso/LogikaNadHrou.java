@@ -1,5 +1,3 @@
-import javax.swing.*;
-
 public class LogikaNadHrou {
     private Hra hra;
     private HernaPlocha hernaPlocha;
@@ -63,8 +61,6 @@ public class LogikaNadHrou {
         } else if (this.hra.getPocetBodovHrac1() == this.hra.getPocetBodovHrac2()) {
             System.out.println("Remíza!");
         }
-
-        //JOptionPane.showMessageDialog(null, "");
 
         System.exit(0);
     }
