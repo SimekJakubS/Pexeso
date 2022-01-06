@@ -1,10 +1,10 @@
+import javax.swing.*;
+
 public class LogikaNadHrou {
     private Hra hra;
     private HernaPlocha hernaPlocha;
     private Manazer manazer;
-
     private boolean hrac1NaTahu;
-    private int pricitanieBodovCounter;
 
     public LogikaNadHrou(String menoHraca1, String menoHraca2, int velkostHry) {
         this.hra = new Hra(menoHraca1, menoHraca2, velkostHry);
@@ -32,14 +32,40 @@ public class LogikaNadHrou {
                 this.hra.dalsieKolo();
             }
 
-
-            if(this.pricitanieBodovCounter % 2 == 0) {
-                this.pricitanieBodovCounter = this.pricitanieBodovCounter % 2;
+            if (this.hernaPlocha.isMoznostPridatBody()) {
                 this.hra.pridajBody();
-                this.pricitanieBodovCounter++;
             }
 
+
             this.hernaPlocha.resetDveOtocene();
+            this.kontrolaKoncaHry();
         }
+    }
+
+    private void kontrolaKoncaHry() {
+        if (this.hernaPlocha.getVelkostHry() == 1) {
+            if (this.hra.getPocetBodovHrac1() + this.hra.getPocetBodovHrac2() >= 6) {
+                this.koniecHry();
+            }
+        } else if (this.hernaPlocha.getVelkostHry() == 2) {
+            if (this.hra.getPocetBodovHrac1() + this.hra.getPocetBodovHrac2() >= 9) {
+                this.koniecHry();
+            }
+        }
+    }
+
+    private void koniecHry() {
+
+        if (this.hra.getPocetBodovHrac1() > this.hra.getPocetBodovHrac2()) {
+            System.out.println("Vyhral " + this.hra.getMenoHraca1());
+        } else if (this.hra.getPocetBodovHrac1() < this.hra.getPocetBodovHrac2()) {
+            System.out.println("Vyhral " + this.hra.getMenoHraca2());
+        } else if (this.hra.getPocetBodovHrac1() == this.hra.getPocetBodovHrac2()) {
+            System.out.println("Remíza!");
+        }
+
+        //JOptionPane.showMessageDialog(null, "");
+
+        System.exit(0);
     }
 }

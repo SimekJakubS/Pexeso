@@ -20,6 +20,7 @@ public class HernaPlocha {
     private boolean dveKartySuOtocene;
     private boolean vitaznaDvojica;
     private int velkostHry;
+    private boolean moznostPridatBody;
 
     public HernaPlocha(String menoHraca1, String menoHraca2, int velkostHry) {
         this.nahodneFarebneKombinacie = nahodneFarebneKombinacie;
@@ -28,11 +29,8 @@ public class HernaPlocha {
         this.platno = Platno.dajPlatno();
         this.platno.setVisible(true);
         this.refresh = new Refresh();
-
         this.velkostHry = velkostHry;
-
         this.vytvorKarty(velkostHry);
-
         this.menoHraca1 = menoHraca1;
         this.menoHraca2 = menoHraca2;
     }
@@ -103,7 +101,6 @@ public class HernaPlocha {
 
             } else if (kliknutyX <= 30 && kliknutyY <= 30 && this.otocenaDvojica.size() == 2) { //OSETRENIE REFRESH TLACIDLA
                 if (!this.vitaznaDvojica) {
-                    //System.out.println("START DALSIEHO KOLA:");
                     this.prevratKarty();
                     this.dalsieKolo();
                 }    //AK JE VITRAZNA DVOJICA TRIGGERED TAK TOTO NEPOJDE
@@ -126,7 +123,6 @@ public class HernaPlocha {
                     this.cisloKarty = 0;
 
                     this.vyberKartuZoSuradnic(suradnicaX, suradnicaY, vyberKartuX, vyberKartuY);
-                    //System.out.println(this.otocenaDvojica);
                 }
             } else if (kliknutyX <= 30 && kliknutyY <= 30 && this.otocenaDvojica.size() == 2) { //OSETRENIE REFRESH TLACIDLA
                 if (!this.vitaznaDvojica) {
@@ -146,17 +142,11 @@ public class HernaPlocha {
     private void vyberKartuZoSuradnic (int suradnicaX, int suradnicaY, int vyberKartuX, int vyberKartuY) {
         if (this.velkostHry == 1) {
 
-            System.out.println(suradnicaX);
-            System.out.println(suradnicaY);
-            System.out.println("Karty: " + this.karty);
-
-
             switch (suradnicaY) {
                 case 0:
                     if (this.karty.get(suradnicaX).getJeOdokryta()) {
                         this.otocenaDvojica.add(this.karty.get(suradnicaX));
                     }
-                    System.out.println(this.karty.get(suradnicaX));
                     this.cisloKarty = suradnicaX;
                     this.jeVybrata = true;
                     break;
@@ -166,8 +156,6 @@ public class HernaPlocha {
                     if (this.karty.get(suradnicaX + 4).getJeOdokryta()) {
                         this.otocenaDvojica.add(this.karty.get(suradnicaX + 4));
                     }
-                    System.out.println(this.karty.get(suradnicaX+4));
-                    System.out.println(cisloKarty);
                     this.cisloKarty = suradnicaX + 4;
                     this.jeVybrata = true;
                     break;
@@ -176,8 +164,6 @@ public class HernaPlocha {
                     if (this.karty.get(suradnicaX+8).getJeOdokryta()) {
                         this.otocenaDvojica.add(this.karty.get(suradnicaX+8));
                     }
-                    System.out.println(this.karty.get(suradnicaX+8));
-                    System.out.println(this.cisloKarty);
                     this.cisloKarty = suradnicaX + 8;
                     this.jeVybrata = true;
                     break;
@@ -231,6 +217,10 @@ public class HernaPlocha {
         return this.karty;
     }
 
+    public int getVelkostHry () {
+        return this.velkostHry;
+    }
+
     private void dalsieKolo() {
         this.hrac1NaTahu = !this.hrac1NaTahu;
         if (this.hrac1NaTahu) {
@@ -249,20 +239,26 @@ public class HernaPlocha {
     }
 
     public void kontrolujZhodnostDvojice() {
-        if (this.otocenaDvojica.size() == 2) {
+        if (this.otocenaDvojica.size() == 2 && !this.otocenaDvojica.get(0).equals(this.otocenaDvojica.get(1))) {
             this.dveKartySuOtocene = true;
             if (this.otocenaDvojica.get(0).getFarebnaKombinacia() == this.otocenaDvojica.get(1).getFarebnaKombinacia()) {
                 this.dveOtocene = true;
                 this.vitaznaDvojica = true;
                 //TU dorob zakazanie prevracania karty
+                this.moznostPridatBody = true;
 
             } else {
                 this.dveOtocene = false;
                 this.vitaznaDvojica = false;
+                this.moznostPridatBody = false;
             }
         }
 
         this.dveKartySuOtocene = false;
+    }
+
+    public boolean isMoznostPridatBody() {
+        return this.moznostPridatBody;
     }
 
     public boolean getDveKartySuOtocene() {

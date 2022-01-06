@@ -4,47 +4,39 @@ public class Hra {
 
     private Hrac hrac1;
     private Hrac hrac2;
-    private boolean hraSkoncila;
-    private int maxPocetBodov;
+    private String menoHraca1;
+    private String menoHraca2;
     private boolean hrac1NaTahu = true;
-    private int pocetKol;
+    private ArrayList<Hrac> hraci = new ArrayList<Hrac>();
 
     //constructor
     public Hra(String menoHraca1, String menoHraca2, int velkostHry) {
-        this.maxPocetBodov = maxPocetBodov;
-        this.hrac1NaTahu = hrac1NaTahu;
 
-        ArrayList<Hrac> hraci = new ArrayList<Hrac>();
         this.hrac1 = new Hrac(menoHraca1);
         this.hrac2 = new Hrac(menoHraca2);
-
         hraci.add(this.hrac1);
         hraci.add(this.hrac2);
+
+        this.hrac1NaTahu = hrac1NaTahu;
+        this.menoHraca1 = menoHraca1;
+        this.menoHraca2 = menoHraca2;
     }
 
     public void pridajBody() {
         if (this.hrac1NaTahu) {
             this.hrac1.incPocetBodov();
-            System.out.println("Hráč 1 dostáva bod!");
+            System.out.println(menoHraca1 + " dostáva bod!");
         } else {
             this.hrac2.incPocetBodov();
-            System.out.println("Hráč 1 dostáva bod!");
+            System.out.println(menoHraca2 + " dostáva bod!");
         }
     }
 
     public void dalsieKolo() {
         if (this.hrac1NaTahu) {
-            //System.out.println("Toto je " + this.pocetKol + ". kolo!");
         }
 
         this.hrac1NaTahu = !this.hrac1NaTahu;
-    }
-
-    public boolean getHraSkoncila() {
-        if (this.hrac1.getPocetBodov() + this.hrac2.getPocetBodov() == maxPocetBodov) {
-            this.hraSkoncila = true;
-        }
-        return this.hraSkoncila;
     }
 
     public boolean getHrac1NaTahu() {
@@ -59,5 +51,12 @@ public class Hra {
         return this.hrac2.getPocetBodov();
     }
 
-    //TODO: dorob osetrovanie poctu bodov a vyhodnocovanie vitaza
+    public String getMenoHraca1 () {
+        return this.menoHraca1;
+    }
+
+    public String getMenoHraca2 () {
+        return this.menoHraca2;
+    }
+
 }
