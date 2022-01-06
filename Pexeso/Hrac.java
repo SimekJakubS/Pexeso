@@ -1,6 +1,6 @@
 public class Hrac {
 
-    private String meno;
+    private final String meno;
     private int pocetBodov;
 
     public Hrac(String meno) {

@@ -1,24 +1,23 @@
 public class LogikaNadHrou {
-    private Hra hra;
-    private HernaPlocha hernaPlocha;
-    private Manazer manazer;
-    private boolean hrac1NaTahu;
+    private final Hra hra;
+    private final HernaPlocha hernaPlocha;
 
     public LogikaNadHrou(String menoHraca1, String menoHraca2, int velkostHry) {
-        this.hra = new Hra(menoHraca1, menoHraca2, velkostHry);
+        this.hra = new Hra(menoHraca1, menoHraca2);
         this.hernaPlocha = new HernaPlocha(menoHraca1, menoHraca2, velkostHry);
-        this.manazer = new Manazer();
-        this.manazer.spravujObjekt(this);
+        Manazer manazer = new Manazer();
+        manazer.spravujObjekt(this);
 
+        System.out.println(this.hra.getMenoHraca1() + " ide prvý");
     }
 
     public void vyberSuradnice(int kliknutyX, int kliknutyY) {
         this.hernaPlocha.vyberSuradnice(kliknutyX, kliknutyY);
-        this.hrac1NaTahu = this.hernaPlocha.getHracNaTahu();
+        boolean hrac1NaTahu = this.hernaPlocha.getHracNaTahu();
         this.hernaPlocha.kontrolujZhodnostDvojice();
         //TU TRIGGERNI ZMENU KOlA + PRIPISANIE BODOV
-        System.out.println(this.hra.getPocetBodovHrac1());
-        System.out.println(this.hra.getPocetBodovHrac2());
+        System.out.println(this.hra.getMenoHraca1() + " : " + this.hra.getPocetBodovHrac1());
+        System.out.println(this.hra.getMenoHraca2() + " : " + this.hra.getPocetBodovHrac2());
         System.out.println("---------------------------");
 
         if (this.hernaPlocha.isDveRovnakeOtocene()) {
@@ -33,7 +32,6 @@ public class LogikaNadHrou {
             if (this.hernaPlocha.isMoznostPridatBody()) {
                 this.hra.pridajBody();
             }
-
 
             this.hernaPlocha.resetDveOtocene();
             this.kontrolaKoncaHry();

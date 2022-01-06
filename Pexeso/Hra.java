@@ -2,20 +2,22 @@ import java.util.ArrayList;
 
 public class Hra {
 
-    private Hrac hrac1;
-    private Hrac hrac2;
-    private String menoHraca1;
-    private String menoHraca2;
+    private final Hrac hrac1;
+    private final Hrac hrac2;
+    private final String menoHraca1;
+    private final String menoHraca2;
     private boolean hrac1NaTahu = true;
-    private ArrayList<Hrac> hraci = new ArrayList<Hrac>();
 
     //constructor
-    public Hra(String menoHraca1, String menoHraca2, int velkostHry) {
+    public Hra(String menoHraca1, String menoHraca2) {
 
         this.hrac1 = new Hrac(menoHraca1);
         this.hrac2 = new Hrac(menoHraca2);
-        this.hraci.add(this.hrac1);
-        this.hraci.add(this.hrac2);
+
+        ArrayList<Hrac> hraci = new ArrayList<Hrac>();
+
+        hraci.add(this.hrac1);
+        hraci.add(this.hrac2);
 
         this.hrac1NaTahu = hrac1NaTahu;
         this.menoHraca1 = menoHraca1;

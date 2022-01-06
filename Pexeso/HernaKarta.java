@@ -1,8 +1,8 @@
 public class HernaKarta {
 
-    private Stvorec zakryta;
-    private Stvorec odokryta;
-    private Kruh kruh;
+    private final Stvorec zakryta;
+    private final Stvorec odokryta;
+    private final Kruh kruh;
 
     private boolean jeOdokryta = false;
     private int posunX = 0;
@@ -56,11 +56,7 @@ public class HernaKarta {
                 this.zakryta.zobraz();
             }
 
-            if (!this.jeOdokryta) {
-                this.jeOdokryta = true;
-            } else {
-                this.jeOdokryta = false;
-            }
+            this.jeOdokryta = !this.jeOdokryta;
         }
     }
 
